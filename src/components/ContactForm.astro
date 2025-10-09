@@ -98,35 +98,16 @@
       Nachricht senden
     </button>
 
-    <div id="form-message" class="hidden mt-4 p-4 rounded-lg"></div>
+    <div
+      id="form-message"
+      class="hidden mt-4 p-4 rounded-lg"
+      role="status"
+      aria-live="polite"
+    ></div>
   </form>
 </section>
 
-<script lang="ts">
-  const formElement = document.getElementById('contact-form');
-  const messageElement = document.getElementById('form-message');
 
-  if (formElement instanceof HTMLFormElement && messageElement instanceof HTMLDivElement) {
-    formElement.addEventListener('submit', async event => {
-      event.preventDefault();
-
-      const formData = new FormData(formElement);
-      const submissionData = Object.fromEntries(formData.entries());
-      console.info('Contact form submission', submissionData);
-
-      messageElement.classList.remove('hidden', 'bg-green-100', 'bg-red-100');
-      messageElement.textContent = 'Nachricht wird gesendet...';
-      messageElement.classList.add('bg-blue-100', 'text-blue-800');
-
-      // Simulate form submission (replace with actual API call)
-      await new Promise(resolve => setTimeout(resolve, 1500));
-
-      messageElement.classList.remove('bg-blue-100', 'text-blue-800');
-      messageElement.classList.add('bg-green-100', 'text-green-800');
-      messageElement.textContent =
-        'Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet. Wir melden uns in Kürze bei Ihnen.';
-
-      formElement.reset();
     });
   } else {
     console.warn('Contact form elements could not be found in the document.');
