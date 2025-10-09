@@ -27,7 +27,6 @@
     "@astrojs/tailwind": "^5.1.2",
     "astro": "^4.16.18",
     "openai": "^4.73.0",
-    "anthropic": "^0.32.1",
     "zod": "^3.24.1",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.3"
