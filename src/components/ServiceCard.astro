@@ -1,0 +1,53 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  href?: string;
+}
+
+const { title, description, icon, href } = Astro.props;
+
+const iconMap: Record<string, string> = {
+  strategy: '📊',
+  change: '🔄',
+  process: '⚙️',
+  digital: '💻',
+  default: '✨',
+};
+
+const displayIcon = iconMap[icon] || iconMap.default;
+---
+
+<div class="card group">
+  <div class="p-6 md:p-8">
+    <div class="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+      {displayIcon}
+    </div>
+
+    <h3 class="text-2xl font-bold text-gray-900 mb-3">
+      {title}
+    </h3>
+
+    <p class="text-gray-600 mb-6">
+      {description}
+    </p>
+
+    {href && (
+      <a
+        href={href}
+        class="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium group-hover:translate-x-1 transition-transform duration-300"
+      >
+        Mehr erfahren
+        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </a>
+    )}
+  </div>
+</div>

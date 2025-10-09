@@ -1,0 +1,74 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import Hero from '@/components/Hero.astro';
+import BlogCard from '@/components/BlogCard.astro';
+import { contentManager } from '@/lib/contentManager';
+
+// Generate some sample blog posts (in production, these would come from a CMS or database)
+const sampleTopics = [
+  { topic: 'Strategische Planung in unsicheren Zeiten', category: 'Strategie' },
+  { topic: 'Erfolgreiches Change Management: Best Practices', category: 'Change Management' },
+  { topic: 'Digitale Transformation: Der richtige Zeitpunkt', category: 'Digitalisierung' },
+  { topic: 'Prozessoptimierung mit Lean-Methoden', category: 'Prozesse' },
+];
+
+const blogPosts = await Promise.all(
+  sampleTopics.map(({ topic, category }) =>
+    contentManager.generateBlogPost(topic, category)
+  )
+);
+---
+
+<MainLayout
+  title="Blog - wissen-handeln.com"
+  description="Aktuelle Artikel und Einblicke zu Strategieentwicklung, Change Management und digitaler Transformation."
+>
+  <Hero
+    title="Blog"
+    subtitle="Einblicke, Best Practices und aktuelle Entwicklungen aus der Beratungspraxis"
+  />
+
+  <!-- Blog Posts Grid -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {blogPosts.map((post) => (
+          <BlogCard
+            title={post.title}
+            excerpt={post.excerpt}
+            slug={post.slug}
+            publishedDate={post.publishedDate}
+            category={post.category}
+            readingTime={post.readingTime}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="section-padding bg-gray-50">
+    <div class="container-custom">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Bleiben Sie informiert
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Erhalten Sie regelmäßig neue Artikel und Einblicke direkt in Ihr Postfach.
+        </p>
+
+        <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <input
+            type="email"
+            placeholder="Ihre E-Mail-Adresse"
+            class="flex-grow px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            required
+          />
+          <button type="submit" class="btn-primary whitespace-nowrap">
+            Anmelden
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</MainLayout>

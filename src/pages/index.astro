@@ -1,0 +1,135 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import Hero from '@/components/Hero.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import { contentManager } from '@/lib/contentManager';
+
+const services = contentManager.getServices();
+---
+
+<MainLayout
+  title="wissen-handeln.com - Wissen in Handeln umsetzen"
+  description="Professionelle Beratung für Strategieentwicklung, Change Management und digitale Transformation."
+>
+  <Hero
+    title="Wissen in Handeln umsetzen"
+    subtitle="Professionelle Beratung für nachhaltige Veränderung und strategische Entwicklung"
+    ctaText="Beratung anfragen"
+    ctaHref="/contact"
+    secondaryCtaText="Mehr erfahren"
+    secondaryCtaHref="/about"
+  />
+
+  <!-- Services Section -->
+  <section class="section-padding bg-gray-50">
+    <div class="container-custom">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">
+          Unsere Leistungen
+        </h2>
+        <p class="text-xl text-gray-600">
+          Maßgeschneiderte Beratungsleistungen für Ihre individuellen Herausforderungen
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {services.map((service) => (
+          <ServiceCard
+            title={service.title}
+            description={service.description}
+            icon={service.icon}
+            href={`/services#${service.slug}`}
+          />
+        ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="/services" class="btn-primary">
+          Alle Leistungen anzeigen
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Value Proposition Section -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Warum wissen-handeln.com?
+          </h2>
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                <span class="text-2xl">🎯</span>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">
+                  Praxisorientiert
+                </h3>
+                <p class="text-gray-600">
+                  Wir entwickeln keine theoretischen Konzepte, sondern umsetzbare Lösungen, die in Ihrer Praxis funktionieren.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                <span class="text-2xl">🤝</span>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">
+                  Partnerschaftlich
+                </h3>
+                <p class="text-gray-600">
+                  Wir arbeiten eng mit Ihnen zusammen und befähigen Ihr Team, eigenständig erfolgreich zu sein.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                <span class="text-2xl">📈</span>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">
+                  Messbar
+                </h3>
+                <p class="text-gray-600">
+                  Wir definieren klare Ziele und messen den Erfolg unserer Zusammenarbeit anhand konkreter Kennzahlen.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="aspect-square bg-gradient-to-br from-primary-100 to-primary-200 rounded-2xl flex items-center justify-center">
+            <div class="text-center p-8">
+              <div class="text-6xl mb-4">💡</div>
+              <p class="text-2xl font-bold text-gray-900">
+                Von der Idee zur Umsetzung
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section-padding bg-gradient-to-br from-primary-600 to-primary-800 text-white">
+    <div class="container-custom text-center">
+      <h2 class="text-4xl font-bold mb-6">
+        Bereit für den nächsten Schritt?
+      </h2>
+      <p class="text-xl text-primary-100 mb-10 max-w-2xl mx-auto">
+        Lassen Sie uns gemeinsam herausfinden, wie wir Ihre Ziele erreichen können.
+      </p>
+      <a href="/contact" class="btn bg-white text-primary-600 hover:bg-primary-50">
+        Kostenloses Erstgespräch vereinbaren
+      </a>
+    </div>
+  </section>
+</MainLayout>

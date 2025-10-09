@@ -1,0 +1,147 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import { contentManager } from '@/lib/contentManager';
+import { formatDate, parseMarkdown } from '@/lib/utils';
+
+export async function getStaticPaths() {
+  // Generate sample blog posts for static paths
+  const sampleTopics = [
+    { topic: 'Strategische Planung in unsicheren Zeiten', category: 'Strategie' },
+    { topic: 'Erfolgreiches Change Management: Best Practices', category: 'Change Management' },
+    { topic: 'Digitale Transformation: Der richtige Zeitpunkt', category: 'Digitalisierung' },
+    { topic: 'Prozessoptimierung mit Lean-Methoden', category: 'Prozesse' },
+  ];
+
+  const blogPosts = await Promise.all(
+    sampleTopics.map(({ topic, category }) =>
+      contentManager.generateBlogPost(topic, category)
+    )
+  );
+
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const htmlContent = await parseMarkdown(post.content);
+---
+
+<MainLayout
+  title={`${post.title} - Blog - wissen-handeln.com`}
+  description={post.excerpt}
+  keywords={post.keywords}
+>
+  <!-- Article Header -->
+  <article class="section-padding">
+    <div class="container-custom max-w-4xl">
+      <!-- Breadcrumb -->
+      <nav class="mb-8 text-sm">
+        <ol class="flex items-center gap-2 text-gray-600">
+          <li><a href="/" class="hover:text-primary-600">Home</a></li>
+          <li>/</li>
+          <li><a href="/blog" class="hover:text-primary-600">Blog</a></li>
+          <li>/</li>
+          <li class="text-gray-900">{post.title}</li>
+        </ol>
+      </nav>
+
+      <!-- Article Meta -->
+      <div class="mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">
+            {post.category}
+          </span>
+          <span class="text-gray-500 text-sm">
+            {post.readingTime} Min. Lesezeit
+          </span>
+        </div>
+
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          {post.title}
+        </h1>
+
+        <div class="flex items-center gap-4 text-sm text-gray-600">
+          <time datetime={post.publishedDate.toISOString()}>
+            {formatDate(post.publishedDate)}
+          </time>
+          <span>•</span>
+          <span>{post.author}</span>
+        </div>
+      </div>
+
+      <!-- Article Content -->
+      <div class="prose prose-lg max-w-none">
+        <div set:html={htmlContent} />
+      </div>
+
+      <!-- Article Tags -->
+      <div class="mt-12 pt-8 border-t border-gray-200">
+        <div class="flex flex-wrap gap-2">
+          {post.tags.map((tag) => (
+            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="mt-16 p-8 bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          Haben Sie Fragen zu diesem Thema?
+        </h2>
+        <p class="text-gray-700 mb-6">
+          Wir beraten Sie gerne zu Ihrer individuellen Situation und entwickeln gemeinsam mit Ihnen passende Lösungen.
+        </p>
+        <a href="/contact" class="btn-primary">
+          Jetzt Kontakt aufnehmen
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <!-- Related Posts -->
+  <section class="section-padding bg-gray-50">
+    <div class="container-custom">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">
+        Weitere Artikel
+      </h2>
+      <div class="text-center">
+        <a href="/blog" class="btn-secondary">
+          Alle Artikel anzeigen
+        </a>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .prose {
+    color: #374151;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    color: #111827;
+    font-weight: 700;
+  }
+
+  .prose a {
+    color: #0284c7;
+    text-decoration: none;
+  }
+
+  .prose a:hover {
+    color: #0369a1;
+    text-decoration: underline;
+  }
+
+  .prose strong {
+    color: #111827;
+    font-weight: 600;
+  }
+</style>

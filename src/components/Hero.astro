@@ -1,0 +1,84 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaHref?: string;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+}
+
+const {
+  title,
+  subtitle,
+  ctaText = 'Jetzt starten',
+  ctaHref = '/contact',
+  secondaryCtaText,
+  secondaryCtaHref,
+} = Astro.props;
+---
+
+<section class="relative bg-gradient-to-br from-primary-600 via-primary-700 to-primary-900 text-white section-padding overflow-hidden">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 opacity-10">
+    <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <circle cx="20" cy="20" r="1" fill="currentColor" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)" />
+    </svg>
+  </div>
+
+  <div class="container-custom relative z-10">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-balance mb-6 animate-fade-in">
+        {title}
+      </h1>
+
+      {subtitle && (
+        <p class="text-xl md:text-2xl text-primary-100 mb-10 text-balance animate-fade-in-delay">
+          {subtitle}
+        </p>
+      )}
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-delay-2">
+        <a href={ctaHref} class="btn bg-white text-primary-600 hover:bg-primary-50">
+          {ctaText}
+        </a>
+
+        {secondaryCtaText && secondaryCtaHref && (
+          <a href={secondaryCtaHref} class="btn border-2 border-white text-white hover:bg-white hover:text-primary-600">
+            {secondaryCtaText}
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out;
+  }
+
+  .animate-fade-in-delay {
+    animation: fade-in 0.6s ease-out 0.2s both;
+  }
+
+  .animate-fade-in-delay-2 {
+    animation: fade-in 0.6s ease-out 0.4s both;
+  }
+</style>

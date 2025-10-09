@@ -1,0 +1,159 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import Hero from '@/components/Hero.astro';
+import { contentManager } from '@/lib/contentManager';
+
+const services = contentManager.getServices();
+---
+
+<MainLayout
+  title="Leistungen - wissen-handeln.com"
+  description="Unsere Beratungsleistungen: Strategieberatung, Change Management, Prozessoptimierung und digitale Transformation."
+>
+  <Hero
+    title="Unsere Leistungen"
+    subtitle="Maßgeschneiderte Beratung für Ihre individuellen Herausforderungen"
+    ctaText="Beratung anfragen"
+    ctaHref="/contact"
+  />
+
+  <!-- Services Overview -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="space-y-24">
+        {services.map((service, index) => (
+          <div id={service.slug} class="scroll-mt-24">
+            <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+              <div class={index % 2 === 1 ? 'lg:order-2' : ''}>
+                <div class="inline-block px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-medium mb-4">
+                  {service.title}
+                </div>
+
+                <h2 class="text-4xl font-bold text-gray-900 mb-6">
+                  {service.description}
+                </h2>
+
+                <div class="mb-8">
+                  <h3 class="text-xl font-bold text-gray-900 mb-4">
+                    Unsere Leistungen
+                  </h3>
+                  <ul class="space-y-3">
+                    {service.features.map((feature) => (
+                      <li class="flex items-start gap-3">
+                        <svg class="w-6 h-6 text-primary-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span class="text-gray-700">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-4">
+                    Ihr Nutzen
+                  </h3>
+                  <ul class="space-y-3">
+                    {service.benefits.map((benefit) => (
+                      <li class="flex items-start gap-3">
+                        <svg class="w-6 h-6 text-accent-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        <span class="text-gray-700">{benefit}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div class={index % 2 === 1 ? 'lg:order-1' : ''}>
+                <div class="aspect-square bg-gradient-to-br from-primary-100 to-primary-200 rounded-2xl flex items-center justify-center">
+                  <span class="text-8xl">{service.icon === 'strategy' ? '📊' : service.icon === 'change' ? '🔄' : service.icon === 'process' ? '⚙️' : '💻'}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="section-padding bg-gray-50">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 mb-6">
+          Unser Beratungsprozess
+        </h2>
+        <p class="text-xl text-gray-600">
+          Strukturiert, transparent und auf Ihre Bedürfnisse zugeschnitten
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="bg-white rounded-2xl p-8 shadow-lg text-center">
+          <div class="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+            1
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">
+            Erstgespräch
+          </h3>
+          <p class="text-gray-600">
+            Kennenlernen und Bedarfsanalyse in einem unverbindlichen Gespräch
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 shadow-lg text-center">
+          <div class="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+            2
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">
+            Konzeption
+          </h3>
+          <p class="text-gray-600">
+            Entwicklung eines maßgeschneiderten Lösungskonzepts
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 shadow-lg text-center">
+          <div class="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+            3
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">
+            Umsetzung
+          </h3>
+          <p class="text-gray-600">
+            Gemeinsame Implementierung mit enger Begleitung
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 shadow-lg text-center">
+          <div class="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+            4
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">
+            Erfolgskontrolle
+          </h3>
+          <p class="text-gray-600">
+            Messung der Ergebnisse und kontinuierliche Optimierung
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section-padding bg-gradient-to-br from-primary-600 to-primary-800 text-white">
+    <div class="container-custom text-center">
+      <h2 class="text-4xl font-bold mb-6">
+        Welche Herausforderung möchten Sie angehen?
+      </h2>
+      <p class="text-xl text-primary-100 mb-10 max-w-2xl mx-auto">
+        Lassen Sie uns gemeinsam die passende Lösung für Ihre Situation finden.
+      </p>
+      <a href="/contact" class="btn bg-white text-primary-600 hover:bg-primary-50">
+        Jetzt beraten lassen
+      </a>
+    </div>
+  </section>
+</MainLayout>

@@ -1,0 +1,51 @@
+version: '3.8'
+
+# Docker Compose configuration for local development and testing
+# This mirrors the production Coolify deployment
+
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: wissen-handeln-website
+    ports:
+      - "8080:80"
+    environment:
+      - NODE_ENV=production
+      - PUBLIC_SITE_URL=${PUBLIC_SITE_URL:-http://localhost:8080}
+      - PUBLIC_API_URL=${PUBLIC_API_URL:-http://localhost:8080/api}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    labels:
+      - "app=wissen-handeln-website"
+      - "environment=local"
+    # Resource limits (adjust based on your needs)
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+# Networks
+networks:
+  default:
+    name: wissen-handeln-network
+
+# Volumes (if needed for persistent data)
+# volumes:
+#   data:
+#     driver: local
