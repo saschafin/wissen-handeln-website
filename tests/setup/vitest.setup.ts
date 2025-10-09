@@ -79,9 +79,12 @@ export const testUtils = {
 };
 
 // Make utilities globally available
-global.testUtils = testUtils;
+globalThis.testUtils = testUtils;
+
+type TestUtils = typeof testUtils;
 
 // Type declarations
 declare global {
-  var testUtils: typeof testUtils;
+  // eslint-disable-next-line no-var
+  var testUtils: TestUtils;
 }

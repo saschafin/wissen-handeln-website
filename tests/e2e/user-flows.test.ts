@@ -124,11 +124,24 @@ test.describe('Performance', () => {
 
     // Measure Largest Contentful Paint (LCP)
     const lcp = await page.evaluate(() => {
-      return new Promise((resolve) => {
-        new PerformanceObserver((list) => {
+      return new Promise<number>(resolve => {
+        new PerformanceObserver(list => {
           const entries = list.getEntries();
           const lastEntry = entries[entries.length - 1];
-          resolve(lastEntry.renderTime || lastEntry.loadTime);
+
+          if (lastEntry && typeof lastEntry === 'object') {
+            if ('renderTime' in lastEntry && typeof (lastEntry as LargestContentfulPaint).renderTime === 'number') {
+              resolve((lastEntry as LargestContentfulPaint).renderTime ?? 0);
+              return;
+            }
+
+            if ('loadTime' in lastEntry && typeof (lastEntry as LargestContentfulPaint).loadTime === 'number') {
+              resolve((lastEntry as LargestContentfulPaint).loadTime ?? 0);
+              return;
+            }
+          }
+
+          resolve(0);
         }).observe({ entryTypes: ['largest-contentful-paint'] });
 
         setTimeout(() => resolve(0), 5000);
