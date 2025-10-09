@@ -102,28 +102,33 @@
   </form>
 </section>
 
-<script>
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-  const messageDiv = document.getElementById('form-message') as HTMLDivElement;
+<script lang="ts">
+  const formElement = document.getElementById('contact-form');
+  const messageElement = document.getElementById('form-message');
 
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  if (formElement instanceof HTMLFormElement && messageElement instanceof HTMLDivElement) {
+    formElement.addEventListener('submit', async event => {
+      event.preventDefault();
 
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
+      const formData = new FormData(formElement);
+      const submissionData = Object.fromEntries(formData.entries());
+      console.info('Contact form submission', submissionData);
 
-    messageDiv.classList.remove('hidden', 'bg-green-100', 'bg-red-100');
-    messageDiv.textContent = 'Nachricht wird gesendet...';
-    messageDiv.classList.add('bg-blue-100', 'text-blue-800');
+      messageElement.classList.remove('hidden', 'bg-green-100', 'bg-red-100');
+      messageElement.textContent = 'Nachricht wird gesendet...';
+      messageElement.classList.add('bg-blue-100', 'text-blue-800');
 
-    // Simulate form submission (replace with actual API call)
-    await new Promise(resolve => setTimeout(resolve, 1500));
+      // Simulate form submission (replace with actual API call)
+      await new Promise(resolve => setTimeout(resolve, 1500));
 
-    // Success message
-    messageDiv.classList.remove('bg-blue-100', 'text-blue-800');
-    messageDiv.classList.add('bg-green-100', 'text-green-800');
-    messageDiv.textContent = 'Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet. Wir melden uns in Kürze bei Ihnen.';
+      messageElement.classList.remove('bg-blue-100', 'text-blue-800');
+      messageElement.classList.add('bg-green-100', 'text-green-800');
+      messageElement.textContent =
+        'Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet. Wir melden uns in Kürze bei Ihnen.';
 
-    form.reset();
-  });
+      formElement.reset();
+    });
+  } else {
+    console.warn('Contact form elements could not be found in the document.');
+  }
 </script>
