@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Vielen Dank für Ihre Anmeldung! | Wissen-Handeln"
+  description="Ihre Webinar-Anmeldung war erfolgreich. Wir freuen uns auf Sie!"
+>
+  <section class="section">
+    <div class="container" style="max-width: 700px; text-align: center;">
+
+      <!-- Success Icon -->
+      <div style="font-size: 5rem; margin-bottom: 30px;">
+        ✅
+      </div>
+
+      <h1 style="font-size: 2.5rem; margin-bottom: 20px; color: #10b981;">
+        Vielen Dank! Ihr Platz ist reserviert.
+      </h1>
+
+      <p style="font-size: 1.2rem; color: #4b5563; margin-bottom: 40px;">
+        Sie haben sich erfolgreich für das <strong>KI-Starter Webinar</strong> angemeldet!
+      </p>
+
+      <!-- Was passiert jetzt? -->
+      <div style="background: #f0fdf4; padding: 30px; border-radius: 12px; margin-bottom: 40px; text-align: left;">
+        <h2 style="font-size: 1.5rem; margin-bottom: 20px; color: #10b981; text-align: center;">
+          📋 Die nächsten Schritte:
+        </h2>
+
+        <ol style="font-size: 1.1rem; line-height: 2; color: #1f2937; margin-left: 20px;">
+          <li><strong>Bestätigungs-E-Mail:</strong> Sie erhalten in wenigen Minuten eine E-Mail mit allen Details und dem Zugangslink.</li>
+          <li><strong>24h Erinnerung:</strong> Einen Tag vor dem Webinar senden wir Ihnen eine Erinnerung.</li>
+          <li><strong>Community-Zugang:</strong> Optional können Sie unserer kostenlosen Community beitreten und sich mit anderen Teilnehmern austauschen.</li>
+        </ol>
+      </div>
+
+      <!-- Tipp -->
+      <div style="background: #fef3c7; padding: 20px; border-radius: 8px; margin-bottom: 40px;">
+        <p style="font-size: 1rem; color: #92400e;">
+          <strong>💡 Tipp:</strong> Fügen Sie <strong>noreply@wissen-handeln.com</strong> zu Ihrem Adressbuch hinzu,
+          damit unsere E-Mails nicht im Spam-Ordner landen!
+        </p>
+      </div>
+
+      <!-- Upsell: Community -->
+      <div style="background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 40px;">
+        <h3 style="font-size: 1.5rem; margin-bottom: 15px;">
+          🎁 Bonus: Treten Sie unserer kostenlosen Community bei!
+        </h3>
+        <p style="margin-bottom: 25px; color: #4b5563;">
+          Vernetzen Sie sich mit anderen Vereins-Verantwortlichen und Kleinunternehmern,
+          tauschen Sie Erfahrungen aus und erhalten Sie exklusive Tipps & Tricks.
+        </p>
+        <a
+          href="https://facebook.com/groups/ki-fuer-vereine"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary"
+          style="display: inline-block;"
+        >
+          👥 Jetzt der Community beitreten
+        </a>
+      </div>
+
+      <!-- Noch Fragen? -->
+      <div style="text-align: center; padding: 30px; background: #f9fafb; border-radius: 8px;">
+        <h3 style="font-size: 1.3rem; margin-bottom: 15px;">Noch Fragen?</h3>
+        <p style="margin-bottom: 20px; color: #6b7280;">
+          Wir sind für Sie da! Kontaktieren Sie uns jederzeit.
+        </p>
+        <a href="mailto:support@wissen-handeln.com" style="color: #667eea; font-weight: 600; text-decoration: underline;">
+          support@wissen-handeln.com
+        </a>
+      </div>
+
+      <!-- CTA: Zurück zur Startseite -->
+      <div style="margin-top: 40px;">
+        <a href="/" class="btn btn-secondary">
+          ← Zurück zur Startseite
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

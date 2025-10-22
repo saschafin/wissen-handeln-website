@@ -1,0 +1,213 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Webinar buchen - 2 Monate kostenlos | Wissen-Handeln"
+  description="Sichern Sie sich Ihren Platz im KI-Starter Webinar - jetzt 2 Monate kostenlos!"
+>
+  <section class="section">
+    <div class="container" style="max-width: 700px;">
+      <div style="text-align: center; margin-bottom: 40px;">
+        <h1 style="font-size: 2.5rem; margin-bottom: 20px;">🎯 Webinar-Platz reservieren</h1>
+        <p style="font-size: 1.2rem; color: #6b7280;">
+          <strong>KI-Starter in 90 Minuten</strong> - Live-Webinar für Vereine & Kleinunternehmen
+        </p>
+      </div>
+
+      <!-- Launch-Angebot Highlight -->
+      <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 40px; text-align: center;">
+        <div style="font-size: 1.2rem; margin-bottom: 10px;">🔥 <strong>LAUNCH-ANGEBOT</strong></div>
+        <div style="font-size: 3rem; font-weight: bold; margin: 15px 0;">
+          0€
+        </div>
+        <div style="font-size: 1.3rem; margin-bottom: 10px;">
+          <span style="text-decoration: line-through; opacity: 0.7;">Statt 49€</span>
+        </div>
+        <div style="font-size: 1.1rem; background: rgba(255,255,255,0.2); padding: 10px; border-radius: 8px; margin-top: 15px;">
+          <strong>2 Monate kostenlos testen!</strong><br>
+          <span style="font-size: 0.9rem;">Angebot gültig bis 22.12.2025</span>
+        </div>
+      </div>
+
+      <!-- Buchungsformular -->
+      <div style="background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+        <h2 style="margin-bottom: 30px; text-align: center;">Wählen Sie Ihren Wunschtermin</h2>
+
+        <form id="webinarBookingForm" style="display: flex; flex-direction: column; gap: 20px;">
+
+          <!-- Terminauswahl -->
+          <div>
+            <label style="display: block; margin-bottom: 10px; font-weight: 600;">
+              📅 Webinar-Termin wählen
+            </label>
+            <select
+              name="termin"
+              required
+              style="width: 100%; padding: 15px; font-size: 1rem; border: 2px solid #e5e7eb; border-radius: 8px; background: white;"
+            >
+              <option value="">Bitte wählen Sie einen Termin...</option>
+              <option value="2025-10-25-19:00">Freitag, 25.10.2025 - 19:00 Uhr</option>
+              <option value="2025-10-28-18:30">Montag, 28.10.2025 - 18:30 Uhr</option>
+              <option value="2025-11-02-19:00">Samstag, 02.11.2025 - 19:00 Uhr</option>
+              <option value="on-demand">🎬 On-Demand (Aufzeichnung sofort verfügbar)</option>
+            </select>
+          </div>
+
+          <!-- Vorname -->
+          <div>
+            <label style="display: block; margin-bottom: 10px; font-weight: 600;">
+              Vorname *
+            </label>
+            <input
+              type="text"
+              name="firstname"
+              required
+              placeholder="Ihr Vorname"
+              style="width: 100%; padding: 15px; font-size: 1rem; border: 2px solid #e5e7eb; border-radius: 8px;"
+            >
+          </div>
+
+          <!-- Nachname -->
+          <div>
+            <label style="display: block; margin-bottom: 10px; font-weight: 600;">
+              Nachname *
+            </label>
+            <input
+              type="text"
+              name="lastname"
+              required
+              placeholder="Ihr Nachname"
+              style="width: 100%; padding: 15px; font-size: 1rem; border: 2px solid #e5e7eb; border-radius: 8px;"
+            >
+          </div>
+
+          <!-- E-Mail -->
+          <div>
+            <label style="display: block; margin-bottom: 10px; font-weight: 600;">
+              E-Mail-Adresse *
+            </label>
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="ihre@email.de"
+              style="width: 100%; padding: 15px; font-size: 1rem; border: 2px solid #e5e7eb; border-radius: 8px;"
+            >
+          </div>
+
+          <!-- Organisation (Optional) -->
+          <div>
+            <label style="display: block; margin-bottom: 10px; font-weight: 600;">
+              Organisation / Verein (optional)
+            </label>
+            <input
+              type="text"
+              name="organisation"
+              placeholder="z.B. Sportverein Musterhausen e.V."
+              style="width: 100%; padding: 15px; font-size: 1rem; border: 2px solid #e5e7eb; border-radius: 8px;"
+            >
+          </div>
+
+          <!-- Datenschutz-Checkbox -->
+          <div style="margin-top: 10px;">
+            <label style="display: flex; align-items: start; gap: 10px; cursor: pointer;">
+              <input
+                type="checkbox"
+                name="datenschutz"
+                required
+                style="margin-top: 5px; width: 20px; height: 20px; cursor: pointer;"
+              >
+              <span style="font-size: 0.9rem; color: #4b5563;">
+                Ich habe die <a href="/datenschutz" target="_blank" style="color: #667eea; text-decoration: underline;">Datenschutzerklärung</a>
+                zur Kenntnis genommen. Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und für Rückfragen
+                gespeichert werden. *
+              </span>
+            </label>
+          </div>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            class="btn btn-primary"
+            style="width: 100%; font-size: 1.2rem; padding: 18px; margin-top: 10px;"
+          >
+            🎯 Jetzt kostenlos reservieren!
+          </button>
+
+          <p style="text-align: center; font-size: 0.85rem; color: #6b7280;">
+            * Pflichtfelder | Keine Kreditkarte erforderlich
+          </p>
+        </form>
+      </div>
+
+      <!-- Was Sie erwartet -->
+      <div style="background: #f9fafb; padding: 30px; border-radius: 12px; margin-top: 40px;">
+        <h3 style="margin-bottom: 20px; text-align: center;">✅ Das erwartet Sie im Webinar:</h3>
+        <ul style="list-style: none; padding: 0;">
+          <li style="padding: 10px 0; border-bottom: 1px solid #e5e7eb;">
+            <strong>✓ Mindestens 3 sofort einsetzbare KI-Tools</strong><br>
+            <span style="font-size: 0.9rem; color: #6b7280;">Keine Theorie - nur Praxis!</span>
+          </li>
+          <li style="padding: 10px 0; border-bottom: 1px solid #e5e7eb;">
+            <strong>✓ Vereins-spezifische Beispiele</strong><br>
+            <span style="font-size: 0.9rem; color: #6b7280;">Pressemitteilungen, Einladungen, Social Media</span>
+          </li>
+          <li style="padding: 10px 0; border-bottom: 1px solid #e5e7eb;">
+            <strong>✓ Live Q&A Session</strong><br>
+            <span style="font-size: 0.9rem; color: #6b7280;">Stellen Sie Ihre Fragen direkt</span>
+          </li>
+          <li style="padding: 10px 0;">
+            <strong>✓ Bonus: Zugang zur Community</strong><br>
+            <span style="font-size: 0.9rem; color: #6b7280;">Vernetzen Sie sich mit anderen Teilnehmern</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Sicherheitshinweis -->
+      <div style="text-align: center; margin-top: 30px; padding: 20px; background: #e0f2fe; border-radius: 8px;">
+        <p style="font-size: 0.9rem; color: #1e40af;">
+          🔒 <strong>100% Sicher:</strong> Ihre Daten werden verschlüsselt übertragen und DSGVO-konform gespeichert.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Webinar Booking Form Handler
+    const form = document.getElementById('webinarBookingForm');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target as HTMLFormElement);
+        const data = {
+          termin: formData.get('termin'),
+          firstname: formData.get('firstname'),
+          lastname: formData.get('lastname'),
+          email: formData.get('email'),
+          organisation: formData.get('organisation'),
+          datenschutz: formData.get('datenschutz')
+        };
+
+        try {
+          // TODO: Connect to n8n webhook
+          const response = await fetch('https://automatik.wissen-handeln.com/webhook/webinar-buchung', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+
+          if (response.ok) {
+            window.location.href = '/danke-webinar';
+          } else {
+            alert('Fehler bei der Buchung. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Fehler bei der Buchung. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.');
+        }
+      });
+    }
+  </script>
+</BaseLayout>
